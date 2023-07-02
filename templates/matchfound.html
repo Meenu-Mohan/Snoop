@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Upload | Snoop</title>
+    <link rel="stylesheet" href="{% static 'home/css/icons.min.css' %}">
+    <link rel="stylesheet" href="{% static 'home/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'home/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'home/css/responsive.css'%}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	
+	<link rel="shortcut icon" type="image/png" href="{% static 'home/images/favicon.png'%}"/>
+
+</head>
+<body itemscope>
+    <div class="preloader">
+        <div class="loader-inner ball-scale-multiple">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div><!-- Preloader -->
+    <main>
+        <header class="stick">
+            <div class="lg-mnu-sec sticky">
+                <div class="container">
+                    <div class="logo"><a href="\" title="Logo" itemprop="url"><img src="{% static 'home/images/navlogo.png' %}" alt="whiteamklogo.png" itemprop="image"></a></div><!-- Logo -->
+                    <nav>
+                        <div>
+                            <ul>
+                                <li><a href="\" title="" itemprop="url">Home</a></li>
+                                <li><a href="{% url 'missing:missing' %}" title="" itemprop="url">Juveniles</a></li>
+                                {% if user.is_authenticated %}
+                                <li><a href="{% url 'upload:upload' %}" title="" itemprop="url">Upload</a></li>
+                                {% else %}
+                                <li><a href="{% url 'users:login' %}" title="" itemprop="url">Upload</a></li>
+                                {% endif %}
+                                <li><a href="{% url 'home:sos' %}" title="" itemprop="url">SOS</a></li>
+                                {% if user.is_authenticated %}
+                                <li><a href="{% url 'users:profile' %}" title="" itemprop="url">My Account</a></li>
+                                {% else %}
+                                <li><a href="{% url 'users:login' %}" title="" itemprop="url">My Account</a></li>
+                                {% endif %}
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+            </div><!-- Logo Menu Sec -->
+        </header><!-- Header -->
+        <div class="rspn-hdr stick">
+            <div class="lg-mn">
+                <div class="logo"><a href="\" title="Logo" itemprop="url"><img src="{% static 'home/images/navlogo.png' %}" alt="whiteamklogo.png" itemprop="image"></a></div>
+                <span class="rspn-mnu-btn brd-rd5"><i class="fa fa-list-ul"></i></span>
+            </div>
+            <div class="rsnp-mnu">
+                <span class="rspn-mnu-cls"><i class="fa fa-times"></i></span>
+                <ul>
+                    <li><a href="\" title="" itemprop="url">Home</a></li>
+                    <li><a href="{% url 'missing:missing' %}" title="" itemprop="url">Juveniles</a></li>
+                    {% if user.is_authenticated %}
+                    <li><a href="{% url 'upload:upload' %}" title="" itemprop="url">Upload</a></li>
+                    {% else %}
+                    <li><a href="{% url 'users:login' %}" title="" itemprop="url">Upload</a></li>
+                    {% endif %}
+                    <li><a href="{% url 'home:sos' %}" title="" itemprop="url">SOS</a></li>
+                    {% if user.is_authenticated %}
+                    <li><a href="{% url 'users:profile' %}" title="" itemprop="url">My Account</a></li>
+                    {% else %}
+                    <li><a href="{% url 'users:login' %}" title="" itemprop="url">My Account</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div><!-- Responsive Header -->
+        <button onclick="topFunction()" id="myBtn" title=""><i class="fas fa-angle-double-up"></i> <span>Back to Top</span></button>
+		<section id="services">
+            <div class="gap">
+                <div class="container">
+                    <div class="sec-tl text-center missing">
+                        <h3 itemprop="headline">Upload Snoop</h3>
+                    </div><!-- Sec Title -->
+                    <div class="tem-sec remove-ext5 text-center">
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12 col-lg-12">
+                                <div class="tm-bx">
+                                    <div class="tm-inf data-box">
+                                        {% for message in messages%}
+                                        <div class="col-md-3 col-sm-3 col-lg-12">
+                                            <div class="container msgg" style="background-color:white; width: 255px; height:70px; border-radius:10px; border-size:12px; border-color:limegreen;">
+                                                <h6 style="color:black; font-weight:400; font-size: 20px; margin-top:15px;">{{message}}</h6>
+                                            </div>
+                                        </div>
+                                        {% endfor %}
+                                        <div class="row juv-card">
+                                            <div class="col-md-12 col-sm-12 col-lg-6 uplo-img">
+                                                <span class="juv-img">
+                                                    <img src="{% static 'home/images/landlogo.png' %}" alt="image">
+                                                    <h6>Found Someone!</h6>
+                                                    <p>You doubt that someone you saw is <br>a missing juvenile?</p>
+                                                </span>
+                                            </div>
+                                            <div class="col-md-12 col-sm-12 col-lg-6">
+                                                <div class="upload-box">
+                                                    <span class="uplo-img snoop-upload">
+                                                        <img src="{% static 'home/images/ok.png' %}" alt="image">
+                                                        <h6>Hooray!</h6>
+                                                        <p>Match Found</p>
+                                                    </span>
+                                                    <a href="{% url 'upload:upload' %}"><button type="submit" class="theme-btn brd-rd10 upoo">Back to Upload</button></a>
+                                                </div>
+                                            </div>
+                                        </div>    
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- Services Sec -->
+                </div>
+            </div>
+        </section>
+        <div class="btm-br drk-bg fixed-bottom">
+            <div class="container">
+                <div class="cpyrgt"><p itemprop="description"><a href="#" title="" itemprop="url">Snoop</a> &copy; 2023 / ALL RIGHTS RESERVED</p></div>
+            </div>
+        </div><!-- Bottom Bar -->
+    </main><!-- Main Wrapper -->
+
+    <script src="{% static 'home/js/jquery.min.js' %}"></script>
+    <script src="{% static 'home/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'home/js/bootstrap-select.min.js' %}"></script>
+    <script src="{% static 'home/js/downCount.js' %}"></script>
+    <script src="{% static 'home/js/counterup.js' %}"></script>
+    <script src="{% static 'home/js/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'home/js/perfect-scrollbar.min.js' %}"></script>
+    <script src="{% static 'home/js/styleswitcher.js' %}"></script>
+    <script src="{% static 'home/js/fancybox.min.js' %}"></script>
+    <script src="{% static 'home/js/slick.min.js' %}"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcavdONRtu_0BfV63xiQX1LiJpX1ZJ2N0"></script>
+    <script src="{% static 'home/js/google-map-int.js' %}"></script>
+    <script src="{% static 'home/js/custom-scripts.js' %}"></script>
+    <script>
+        document.getElementById('imageUpload').addEventListener('change', function(e) {
+            var imagePreview = document.getElementById('imagePreview');
+            imagePreview.src = URL.createObjectURL(e.target.files[0]);
+            imagePreview.onload = function() {
+                URL.revokeObjectURL(imagePreview.src) // free memory
+            }
+        });
+        </script>
+</body>	
+</html>
